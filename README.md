@@ -27,3 +27,11 @@
 ```bash
 # Start Ollama service (keep running in separate terminal)
 ollama serve
+```
+
+# Contact Information
+- [Privacy Policy](policy.md)
+- [License](license.md)
+
+
+

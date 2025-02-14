@@ -32,7 +32,7 @@ def show_policy():
     
     st.header("7. Contact Information")
     st.write("For any questions, contact us at:")
-    st.write("🔗 **GitHub:** [---]")
+    st.write("🔗 **GitHub:** [https://github.com/sahilkumardhala/local-AI-Interface]")
 
 if __name__ == "__main__":
     show_policy()
