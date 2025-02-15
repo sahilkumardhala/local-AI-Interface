@@ -8,6 +8,7 @@ from langchain_core.prompts import ChatPromptTemplate # Helps structure the conv
 from langchain_core.messages import AIMessage, HumanMessage  # Custom message types to track messages from the AI and the user.
 
 import policy  # Import the policy module
+import theme  # Import the theme module
 
 # Set page config
 # Sets the title and icon shown in the browser tab. Layout is centered. 
@@ -23,11 +24,18 @@ st.set_page_config(
 # Sidebar configuration
 with st.sidebar:
     st.title("⚙️ Settings")
+
+    # Apply theme settings
+    # theme.apply_theme()  
+    st.markdown("---")
+    
+    # Model size selection
     model_size = st.radio(
         "Select Deepseek Model Size:",
         ["1.5B Parameters", "7B Parameters"],
         index=0 # Default selection
     )
+
     # Show warning for 7B model
     if model_size == "7B Parameters":
         st.warning("⚠️ The 7B model requires at least **16GB RAM** for optimal performance. Running on lower memory may cause slow response times or crashes.")
@@ -124,6 +132,9 @@ if prompt := st.chat_input("Type your message..."):
   
 
 # Show privacy policy link
+
 if st.sidebar.button("View Privacy Policy"):
     policy.show_policy()
 
+# if st.sidebar.toggle("Dark Mode"):
+#     theme.apply_theme(dark_mode=True)
