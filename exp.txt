@@ -1,0 +1,19 @@
+def get_file_content_as_string(path: str) -> str:
+    """Reads a file and returns its content as a string."""
+    with open(path, "r", encoding="utf-8") as file:
+        return file.read()
+    # Detect file type
+    # mime_type, _ = mimetypes.guess_type(path)
+
+    # if mime_type and mime_type.startswith("text"):
+    #     # If it's a text file, read as string
+    #     with open(path, "r", encoding="utf-8") as file:
+    #         return file.read()
+    
+    # elif mime_type and mime_type.startswith("image"):
+    #     # If it's an image, encode it as Base64
+    #     with open(path, "rb") as image_file:
+    #         return base64.b64encode(image_file.read()).decode("utf-8")
+    
+    # else:
+    #     raise ValueError("Unsupported file type. Only text and image files are allowed.")

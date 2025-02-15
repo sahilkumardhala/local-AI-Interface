@@ -1,5 +1,5 @@
 ![policy](policy.jpg)
-# Privacy Policy
+# 🔒Privacy Policy
 
 **Effective Date:** [14/02/2025]
 

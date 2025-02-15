@@ -1,15 +1,23 @@
 # app.py
 # Import the required libraries
-
+import os
 import streamlit as st # web interface for the chatbot.
 from langchain_community.chat_models import ChatOllama # interface from LangChain’s community modules that connects to the Ollama models.
 from langchain_core.output_parsers import StrOutputParser # Parses the language model’s output into a string
 from langchain_core.prompts import ChatPromptTemplate # Helps structure the conversation prompt with system and human messages.
 from langchain_core.messages import AIMessage, HumanMessage  # Custom message types to track messages from the AI and the user.
 
-import policy  # Import the policy module
+# import policy  # Import the policy module
 import theme  # Import the theme module
+import base64
+import mimetypes
 
+# Function to read the any file
+def get_file_content_as_string(path: str) -> str:
+    """Reads a file and returns its content as a string."""
+    with open(path, "r", encoding="utf-8") as file:
+        return file.read()
+    
 # Set page config
 # Sets the title and icon shown in the browser tab. Layout is centered. 
 # The sidebar is expanded by default.
@@ -21,6 +29,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+    
 # Sidebar configuration
 with st.sidebar:
     st.title("⚙️ Settings")
@@ -35,6 +44,7 @@ with st.sidebar:
         ["1.5B Parameters", "7B Parameters"],
         index=0 # Default selection
     )
+
 
     # Show warning for 7B model
     if model_size == "7B Parameters":
@@ -129,12 +139,15 @@ if prompt := st.chat_input("Type your message..."):
     # Add AI response to chat history
     st.session_state.messages.append(AIMessage(content=full_response))
     
-  
 
-# Show privacy policy link
+# Show file link in the sidebar
+def show_render_file(file_path):
+    """Render a file content in the sidebar."""
+    file_name = os.path.splitext(file_path)[0] # Remove file extension
 
-if st.sidebar.button("View Privacy Policy"):
-    policy.show_policy()
+    if st.sidebar.button(f"View {file_name}"):
+        st.markdown(get_file_content_as_string(f"{file_path}"))
 
-# if st.sidebar.toggle("Dark Mode"):
-#     theme.apply_theme(dark_mode=True)
+show_render_file("privecy policy.md")
+show_render_file("README.md")
+show_render_file("LICENSE")
